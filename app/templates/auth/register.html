@@ -1,0 +1,60 @@
+{% extends "base/customer-base.html" %}
+
+{% block title %}Register - Vroom{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="flex justify-center items-center min-h-[calc(100vh-5rem)]">
+        <div class="card w-full max-w-xl border">
+            <div class="mb-4">
+                <h1 class="heading-2">Register</h1>
+                <p class="paragraph">Create an account to get started</p>
+            </div>
+
+            <form method="POST" action="/register" class="space-y-4">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">First Name</label>
+                        <input type="text" name="first_name" placeholder="First Name" class="input" required>
+                    </div>
+
+                    <div>
+                        <label class="label">Last Name</label>
+                        <input type="text" name="last_name" placeholder="Last Name" class="input" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="label">Email</label>
+                    <input type="email" id="email" name="email" class="input" placeholder="Enter your email" required>
+                </div>
+
+                <div>
+                    <label for="password" class="label">Password</label>
+                    <input type="password" id="password" name="password" class="input" placeholder="Enter your password"
+                        required>
+                </div>
+
+                <div>
+                    <label for="phone_number" class="label">Phone Number</label>
+                    <input type="text" name="phone_number" placeholder="Phone Number" class="input" required>
+                </div>
+
+                <div>
+                    <label for="address" class="label">Address</label>
+                    <input type="text" name="address" placeholder="Address" class="input" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full">Register</button>
+            </form>
+
+            <div class="mt-4 text-center">
+                <p class="paragraph">Already have an account? <a href="/login"
+                        class="hover:underline text-blue-500">Login</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
