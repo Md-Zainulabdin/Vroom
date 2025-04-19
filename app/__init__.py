@@ -25,8 +25,10 @@ def create_app():
     # Import and register blueprints here
     from .routes.home import home_bp
     from .routes.auth import auth_bp
+    from .routes.car import car_bp
     
     app.register_blueprint(home_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(car_bp)
     
     return app

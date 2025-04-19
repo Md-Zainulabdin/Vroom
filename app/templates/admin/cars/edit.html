@@ -1,0 +1,101 @@
+{% extends "base/admin-base.html" %}
+
+{% block title %}Edit Car - Vroom{% endblock %}
+
+{% block content %}
+
+<section class="container mx-auto p-4">
+    <div class="mb-4">
+        <h1 class="heading-1">Edit Car</h1>
+        <p class="paragraph">Update the car details.</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('car.edit_car_details', car_id=car._id) }}">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="brand" class="label">Brand</label>
+                <input type="text" id="brand" name="brand" class="input" placeholder="Brand" required
+                    value="{{ car.brand }}">
+            </div>
+
+            <div>
+                <label for="model" class="label">Model</label>
+                <input type="text" id="model" name="model" class="input" placeholder="Model" required
+                    value="{{ car.model }}">
+            </div>
+
+            <div>
+                <label for="year" class="label">Year</label>
+                <input type="number" id="year" name="year" class="input" placeholder="Year" required
+                    value="{{ car.year }}">
+            </div>
+
+            <div>
+                <label for="seats" class="label">Seats</label>
+                <input type="number" id="seats" name="seats" class="input" placeholder="Seats" required
+                    value="{{ car.seats }}">
+            </div>
+
+            <div>
+                <label for="price_per_day" class="label">Price per day (PKR)</label>
+                <input type="number" id="price_per_day" name="price_per_day" class="input" placeholder="Price per Day"
+                    required value="{{ car.price_per_day }}">
+            </div>
+
+            <div>
+                <label for="image_url" class="label">Image URL</label>
+                <input type="text" id="image_url" name="image_url" class="input" placeholder="Image URL" required
+                    value="{{ car.image_url }}">
+            </div>
+
+            <div>
+                <label for="fuel_type" class="label">Fuel Type</label>
+                <select name="fuel_type" class="select" required>
+                    <option value="">Select fuel type</option>
+                    <option value="petrol" {{ "selected" if car.fuel_type=="petrol" else "" }}>Petrol</option>
+                    <option value="diesel" {{ "selected" if car.fuel_type=="diesel" else "" }}>Diesel</option>
+                    <option value="electric" {{ "selected" if car.fuel_type=="electric" else "" }}>Electric</option>
+                    <option value="hybrid" {{ "selected" if car.fuel_type=="hybrid" else "" }}>Hybrid</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="transmission" class="label">Transmission</label>
+                <select name="transmission" class="select" required>
+                    <option value="">Select transmission</option>
+                    <option value="automatic" {{ "selected" if car.transmission=="automatic" else "" }}>Automatic
+                    </option>
+                    <option value="manual" {{ "selected" if car.transmission=="manual" else "" }}>Manual</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="car_type" class="label">Car Type</label>
+                <select name="car_type" class="select" required>
+                    <option value="">Select car type</option>
+                    <option value="sedan" {{ "selected" if car.car_type=="sedan" else "" }}>Sedan</option>
+                    <option value="suv" {{ "selected" if car.car_type=="suv" else "" }}>SUV</option>
+                    <option value="hatchback" {{ "selected" if car.car_type=="hatchback" else "" }}>Hatchback</option>
+                    <option value="luxury" {{ "selected" if car.car_type=="luxury" else "" }}>Luxury</option>
+                    <option value="van" {{ "selected" if car.car_type=="van" else "" }}>Van</option>
+                </select>
+            </div>
+
+            <div class="flex items-center gap-4 mt-4">
+                <input type="checkbox" name="is_available" id="is_available" class="custom-checkbox" {% if
+                    car.is_available %}checked{% else %}unchecked{% endif %}>
+                <label for="is_available" class="form-label">Is the car available for rent?</label>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <label for="description" class="label">Description</label>
+            <textarea name="description" id="description" class="textarea" placeholder="Description"
+                required>{{ car.description }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-8">Edit Car</button>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "base/admin-base.html" %}
+
+{% block title %}Add Car - Vroom{% endblock %}
+
+{% block content %}
+
+<section class="container mx-auto p-4">
+    <div class="mb-4">
+        <h1 class="heading-1">Add Car</h1>
+        <p class="paragraph">Add a new car to the system.</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('car.add_new_car') }}">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="brand" class="label">Brand</label>
+                <input type="text" id="brand" name="brand" class="input" placeholder="Brand" required>
+            </div>
+
+            <div>
+                <label for="model" class="label">Model</label>
+                <input type="text" id="model" name="model" class="input" placeholder="Model" required>
+            </div>
+
+            <div>
+                <label for="year" class="label">Year</label>
+                <input type="number" id="year" name="year" class="input" placeholder="Year" required>
+            </div>
+
+            <div>
+                <label for="seats" class="label">Seats</label>
+                <input type="number" id="seats" name="seats" class="input" placeholder="Seats" required>
+            </div>
+
+            <div>
+                <label for="price_per_day" class="label">Price per day (PKR)</label>
+                <input type="number" id="price_per_day" name="price_per_day" class="input" placeholder="Price per Day"
+                    required>
+            </div>
+
+            <div>
+                <label for="image_url" class="label">Image URL</label>
+                <input type="text" id="image_url" name="image_url" class="input" placeholder="Image URL" required>
+            </div>
+
+            <div>
+                <label for="fuel_type" class="label">Fuel Type</label>
+                <select name="fuel_type" class="select" required>
+                    <option value="">Select fuel type</option>
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="electric">Electric</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="transmission" class="label">Transmission</label>
+                <select name="transmission" class="select" required>
+                    <option value="">Select transmission</option>
+                    <option value="automatic">Automatic</option>
+                    <option value="manual">Manual</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="car_type" class="label">Car Type</label>
+                <select name="car_type" class="select" required>
+                    <option value="">Select car type</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="hatchback">Hatchback</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="van">Van</option>
+                </select>
+            </div>
+
+            <div class="flex items-center gap-4 mt-4">
+                <input type="checkbox" name="is_available" id="is_available" class="custom-checkbox" checked>
+                <label for="is_available" class="form-label">Is the car available for rent?</label>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <label for="description" class="label">Description</label>
+            <textarea name="description" id="description" class="textarea" placeholder="Description"
+                required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-8">Add Car</button>
+    </form>
+</section>
+
+{% endblock %}
