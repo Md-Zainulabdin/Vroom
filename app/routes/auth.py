@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, flash, url_for
 from app.models.user_model import Customer, Admin, User
-from flask_login import login_user, current_user
+from flask_login import login_user, logout_user, current_user
 from app import db, login_manager
 from bson import ObjectId
 
@@ -26,6 +26,7 @@ def load_user(user_id):
         print(f"Error loading user: {e}")
         return None
 
+# Loads the registration and login forms
 @auth_bp.route("/register", methods=["GET"])
 def show_register():
     """
@@ -40,6 +41,7 @@ def show_login():
     """
     return render_template("auth/login.html")
 
+# Handles the registration process
 @auth_bp.route("/register", methods=["POST"])
 def register():
     """
@@ -79,7 +81,8 @@ def register():
     except Exception as e:
         flash(f"An error occurred: {e}", "error")
         return redirect(url_for("auth.register"))
-        
+    
+# Handles the login process
 @auth_bp.route("/login", methods=["POST"])
 def login():
     """
@@ -126,10 +129,15 @@ def login():
         flash(f"An error occurred: {e}", "error")
         return redirect(url_for("auth.login"))
         
-        
-        
-        
-        
+# Handles the logout process
+@auth_bp.route("/logout")
+def logout():
+    """
+    Logs out a user.
+    """
+    logout_user()
+    flash("You have been logged out successfully", "success")
+    return redirect(url_for("home.home"))
         
         
         
